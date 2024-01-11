@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('login');
 });
+
+Route::middleware(['statuslogin'])->group(function(){
+    Route::get('/home', [HomeController::class, 'index']);
+});
+
+Route::post('/login', [LoginController::class, 'auth']);
+Route::get('/logout', [LoginController::class, 'logout']);
+
+
+
+

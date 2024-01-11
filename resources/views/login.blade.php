@@ -13,7 +13,8 @@
     </style>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="/login" method="post">
+        @csrf
         <div class="container pt-4 mt-4">
             <div class="row justify-content-center align-item-center">
                 <div class="col-md-4 py-4">
