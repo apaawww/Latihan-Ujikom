@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +23,12 @@ Route::get('/', function () {
 
 Route::middleware(['statuslogin'])->group(function(){
     Route::get('/home', [HomeController::class, 'index']);
+    Route::get('/users', [UserController::class, 'index']);
+    Route::post('/users', [UserController::class, 'search']);
+    Route::get('/users/create', [UserController::class, 'create']);
+    Route::post('/users/add', [UserController::class, 'add']);
+
+
 });
 
 Route::post('/login', [LoginController::class, 'auth']);

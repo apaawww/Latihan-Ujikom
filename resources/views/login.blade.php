@@ -23,8 +23,8 @@
                             <h3 class="text-center fw-bold pt-3">LOGIN</h3>
                             <div class="form-group">
                                 <div class="col-mb-3">
-                                    <label for="email" class="form-label fw-bold">Email</label>
-                                    <input type="text" class="form-control" name="email" id="email" placeholder="Masukkan Email">
+                                    <label for="email" class="form-label fw-bold">Username</label>
+                                    <input type="text" class="form-control" name="akun" id="akun" placeholder="Masukkan Username">
                                 </div>
                             </div>
                             <div class="form-group">

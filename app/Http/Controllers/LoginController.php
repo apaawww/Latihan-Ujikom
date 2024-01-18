@@ -12,10 +12,19 @@ class LoginController extends Controller
 {
     public function auth(Request $request){
         $credential = $request->validate([
-            'email' => 'required',
+            'akun' => 'required',
             'password' => 'required'
         ]);
-        if(Auth::attempt($credential)){
+
+        if(Auth::attempt([
+            'username' => $request->akun,
+            'password' => $request->password
+
+        ]) or Auth::attempt([
+            'email' => $request->akun,
+            'password' => $request->password
+        ])) {
+
             if(Auth::user()->level == "admin"){
                 return redirect('/home');
             }else{
