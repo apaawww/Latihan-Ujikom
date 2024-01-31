@@ -11,12 +11,12 @@
     @if(Session::get('pesan'))
         {{ Session::get('pesan') }}
     @endif
-    <form action="/users" method="post">
+    <form action="/users" method="post" class="mb-3">
         @csrf
         <input type="text" name="cari" id="">
         <input type="submit" value="Cari">
-    </form>
-    <a href="users/create"><button type="button" class="mt-3 pt-3">Tambah Data</button></a>
+    </form><br>
+    <a href="users/create"><button type="button" class="pt-5">Tambah Data</button></a>
     <h4>Total Data Pengguna : {{ $total_users }}</h4>
     <h4>Total Data Admin : {{ $total_admin }}</h4>
     <h4>Total Data Operator : {{ $total_operator }}</h4>
@@ -28,6 +28,7 @@
             <th>EMAIL</th>
             <th>USERNAME</th>
             <th>LEVEL</th>
+            <th>AKSI</th>
         </tr>
         @foreach ($users as $key => $item)
             <tr>
@@ -36,6 +37,10 @@
                 <td>{{ $item->email }}</td>
                 <td>{{ $item->username }}</td>
                 <td>{{ $item->level }}</td>
+                <td>
+                    <a href="/users/hapus/{{ $item->id }}" class="btn btn-outline-danger" onclick="return window.confirm('Anda Yakin Ingin Menghapus Data Ini ?')">Hapus</a>
+                    <a href="/users/edit/{{ $item->id }}>">Edit</a>
+                </td>
             </tr>
         @endforeach
         

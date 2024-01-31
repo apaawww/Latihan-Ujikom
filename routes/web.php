@@ -27,6 +27,9 @@ Route::middleware(['statuslogin'])->group(function(){
     Route::post('/users', [UserController::class, 'search']);
     Route::get('/users/create', [UserController::class, 'create']);
     Route::post('/users/add', [UserController::class, 'add']);
+    Route::get('/users/hapus/{id}', [UserController::class, 'hapus']);
+    Route::get('/users/edit/{id}',[UserController::class,'edit']);
+    Route::post('/users/update/{id}',[UserController::class,'update']);
 
 
 });

@@ -50,4 +50,27 @@ class UserController extends Controller
 
         return redirect('/users');
     }
+
+    function edit($id){
+        $data['users'] = User::find($id);
+        $data['action'] = url('/users/update').'/'.$data['users']->id;
+        $data['tombol'] = "update";
+        return view('create-users',$data);
+    }
+
+    function update(Request $request){
+        User::where('id',$request->id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'username' => $request->username,
+            'password' => $request->password,
+            'level' => $request->level  
+        ]);
+        return redirect('/users');
+    }
+
+    public function hapus($id){
+        User::where('id', $id)->delete();
+        return redirect('/users');
+    }
 }
