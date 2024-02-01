@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AbsensiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::middleware(['statuslogin'])->group(function(){
     Route::get('/users/edit/{id}',[UserController::class,'edit']);
     Route::post('/users/update/{id}',[UserController::class,'update']);
 
+    Route::get('/absensi',[AbsensiController::class,'index']);
 
 });
 

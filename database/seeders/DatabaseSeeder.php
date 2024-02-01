@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Absensi;
 
 class DatabaseSeeder extends Seeder
 {
@@ -35,6 +36,11 @@ class DatabaseSeeder extends Seeder
             'username' => 'operator2',
             'password' => bcrypt('123456'),
             'level' => 'operator'
+        ]);
+        
+        Absensi::create([
+            'tanggal' => date('Y-m-d'),
+            'id_user' => '1'
         ]);
     }
 }
