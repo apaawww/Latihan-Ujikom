@@ -21,7 +21,9 @@ class UserController extends Controller
 
     public function search(Request $request){
         $data['users'] = User::where('name', $request->cari)->orWhere('email', $request->cari)->get();
-        $data['total_users'] = $data['users']->count();  
+        $data['total_users'] = $data['users']->count(); 
+        $data['total_admin'] = User::where('level','admin')->count(); 
+        $data['total_operator'] = User::where('level','operator')->count();   
         Return view('user', $data);
     }
     public function create(){
@@ -51,21 +53,31 @@ class UserController extends Controller
         return redirect('/users');
     }
 
-    function edit($id){
+    public function edit($id){
         $data['users'] = User::find($id);
-        $data['action'] = url('/users/update').'/'.$data['users']->id;
-        $data['tombol'] = "update";
-        return view('create-users',$data);
+        return view('edit-users',$data);
     }
 
-    function update(Request $request){
-        User::where('id',$request->id)->update([
+    public function update(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => ['required','email'],
+            'username' => 'required',
+            'level' => 'required'
+        ]);
+
+        $userData = [
             'name' => $request->name,
             'email' => $request->email,
             'username' => $request->username,
-            'password' => $request->password,
             'level' => $request->level  
-        ]);
+        ];
+
+        if(!empty($request->password )){
+            $userData['password'] = bcrypt($request->password);
+        }
+
+        User::where('id',$request->id)->update($userData);
         return redirect('/users');
     }
 
